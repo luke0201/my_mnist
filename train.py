@@ -32,10 +32,10 @@ with tf.name_scope('evaluation'):
 
 # Train ops
 learning_rate = tf.get_variable(
-        'learning_rate', [1], tf.float32,
-        initializer=tf.constant_initializer(0.01, tf.float32), trainable=False)
+        'learning_rate', [], tf.float32,
+        initializer=tf.constant_initializer(1e-2, tf.float32), trainable=False)
 decay_lr_op = learning_rate.assign(tf.scalar_mul(0.1, learning_rate))
-optimizer = tf.train.MomentumOptimizer(learning_rate=0.01, momentum=0.9)
+optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=0.7)
 with tf.control_dependencies(tf.get_collection(tf.GraphKeys.UPDATE_OPS)):
     train_op = optimizer.minimize(loss)
 
@@ -79,7 +79,7 @@ def main():
                     writer.add_summary(summary, global_step=cur_epoch)
                     print()
 
-                    if iteration % 30 == 0:
+                    if cur_epoch % 30 == 0:
                         print('Decay learning rate')
                         sess.run(decay_lr_op)
                         print()
