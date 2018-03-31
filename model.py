@@ -6,9 +6,10 @@ bnorm = tf.layers.batch_normalization
 dropout = tf.layers.dropout
 
 relu = tf.nn.relu
-relu = tf.nn.leaky_relu
+lrelu = tf.nn.leaky_relu
 sigmoid = tf.sigmoid
 tanh = tf.tanh
+softmax = tf.nn.softmax
 
 def classifier(X, training, apply_softmax=True):
     with tf.variable_scope('classifier'):
