@@ -1,0 +1,7 @@
+# Resource directories
+dataset
+checkpoint
+log
+
+# Others
+__pycache__
