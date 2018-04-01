@@ -2,6 +2,8 @@
 dataset
 checkpoint
 log
+input
 
 # Others
 __pycache__
+.DS_Store
